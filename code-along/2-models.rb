@@ -32,13 +32,30 @@ new_company_2["state"] = "WA"
 new_company_2["url"] = "https://www.amazon.com"
 new_company_2.save # actually add to table
 
-puts new_company.inspect
-puts new_company_2.inspect
-puts "There are #{Company.all.count} companies"
+new_company_3 = Company.new
+new_company_3["name"] = "Twitter"
+new_company_3["city"] = "San Francisco"
+new_company_3["state"] = "CA"
+new_company_3["url"] = "https://www.twitter.com"
+new_company_3.save # actually add to table
+
+# puts new_company.inspect
+# puts new_company_2.inspect
+# puts new_company_3.inspect
+# puts "There are #{Company.all.count} companies"
 
 # 3. query companies table to find all row with California company
 
+# all_companies = Company.all
+# puts all_companies.inspect
+
+cali_companies = Company.where({"state" => "CA"})
+puts cali_companies.inspect 
+puts "There are #{cali_companies.count} California companies in this table"
+
 # 4. query companies table to find single row for Apple
+
+
 
 # 5. read a row's column value
 
