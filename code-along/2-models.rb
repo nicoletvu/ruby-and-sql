@@ -14,7 +14,7 @@ Company.destroy_all
 # 1a. check out the schema file
 # 1b. check out the model file
 
-puts "There are #{Company.all.count} companies"
+# puts "There are #{Company.all.count} companies"
 
 # 2. insert new rows in companies table
 
@@ -49,16 +49,26 @@ new_company_3.save # actually add to table
 # all_companies = Company.all
 # puts all_companies.inspect
 
-cali_companies = Company.where({"state" => "CA"})
-puts cali_companies.inspect 
-puts "There are #{cali_companies.count} California companies in this table"
+# cali_companies = Company.where({"state" => "CA"}) #creating array based on specific filters
+# puts cali_companies.inspect 
+# puts "There are #{cali_companies.count} California companies in this table" #referencing array and counting up items in array
 
 # 4. query companies table to find single row for Apple
 
-
+# apple = Company.where({"name" => "Apple"})[0] #this method is fine... but it assumes it's the first and only thing in the array
+apple = Company.find_by({"name" => "Apple"}) # automatically gives you one thing back... like vlookup
+# puts apple.inspect
 
 # 5. read a row's column value
+# puts apple["url"]
 
 # 6. update a row's column value
 
+amazon = Company.find_by({"name" => "Amazon"})
+amazon["url"] = "amazon.com" # assign it something
+amazon.save # updates
+puts amazon["url"]
+
 # 7. delete a row
+twitter = Company.find_by({"name" => "Twitter"})
+twitter.destroy
