@@ -50,12 +50,19 @@ tofu.save # updates
 # CHALLENGE:
 # 5. write code to display each salesperson's full name
 
-kona = Salesperson.find_by({"first_name" => "Kona"})
-kona_full_name = "#{kona["first_name"]} #{kona["last_name"]}"
-tofu_full_name = "#{tofu["first_name"]} #{tofu["last_name"]}"
+# kona = Salesperson.find_by({"first_name" => "Kona"})
+# kona_full_name = "#{kona["first_name"]} #{kona["last_name"]}"
+# tofu_full_name = "#{tofu["first_name"]} #{tofu["last_name"]}"
+# puts "There are #{Salesperson.all.count} salespeople:"
+# puts "#{kona_full_name}"
+# puts "#{tofu_full_name}"
+
+# Loop way to do it:
 puts "There are #{Salesperson.all.count} salespeople:"
-puts "#{kona_full_name}"
-puts "#{tofu_full_name}"
+all_salespeople = Salesperson.all
+for salesperson in all_salespeople # array... name after for statement can be whatever you want
+    puts "#{salesperson["first_name"]} #{salesperson["last_name"]}"
+ end
 
 # ---------------------------------
 # Salespeople: 2
