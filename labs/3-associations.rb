@@ -17,9 +17,35 @@ Activity.destroy_all
 # 1. insert 3 rows in the activities table with relationships to
 # a single salesperson and 2 different contacts
 
+reachout_jeff_1 = Activity.new
+jeff = Contact.find_by({"first_name" => "Jeff"})
+reachout_jeff_1["contact_id"] = jeff["id"]
+kona = Salesperson.find_by({"first_name" => "Kona"})
+reachout_jeff_1["salesperson_id"] = kona["id"]
+reachout_jeff_1["notes"] = "Jeff picked up the phone and then hung up immediately"
+reachout_jeff_1.save
+
+reachout_jeff_2 = Activity.new
+reachout_jeff_2["contact_id"] = jeff["id"]
+reachout_jeff_2["salesperson_id"] = kona["id"]
+reachout_jeff_2["notes"] = "Jeff sent a cease-and-desist letter"
+reachout_jeff_2.save
+
+reachout_tim = Activity.new
+tim = Contact.find_by({"first_name" => "Tim"})
+reachout_tim["contact_id"] = tim["id"]
+reachout_tim["salesperson_id"] = kona["id"]
+reachout_tim["notes"] = "Invited Tim for coffee"
+reachout_tim.save
+
+
 # 2. Display all the activities between the salesperson used above
 # and one of the contacts (sample output below):
-
+puts "Activities between Kona and Jeff Bezos:"
+kona_jeff_activity = Activity.where("contact_id" => jeff["id"],"salesperson_id" => kona["id"])
+for activity in kona_jeff_activity
+    puts "- #{activity["notes"]}"
+end
 # ---------------------------------
 # Activities between Ben and Tim Cook:
 # - quick checkin over facetime

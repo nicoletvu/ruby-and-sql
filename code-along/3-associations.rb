@@ -50,3 +50,4 @@ for zebra in apple_contacts
     last_name = zebra["last_name"]
     puts "#{first_name} #{last_name}"
 end
+
